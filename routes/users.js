@@ -22,22 +22,23 @@ const { getUsers } = require('../lib/users-query');
  * 
  * @apiSuccessExample {json} Success-Response:
  * HTTP/1.1 200 OK
- * [ {
-      "id": 1,
-      "first_name": "Bob",
-      "last_name": "Lee",
-      "username": "bob123",
-      "password": "y29ehae34&",
-      "email": "bob32@email.com"
-     },
-     {
-      "id": 2,
-      "first_name": "Bob",
-      "last_name": "Lee",
-      "username": "bob123",
-      "password": "y29ehae34&",
-      "email": "bob32@email.com"
-     } 
+ * [
+      {
+          "id": 1,
+          "first_name": "Bob",
+          "last_name": "Lee",
+          "username": "bob123",
+          "password": "y29ehae34&",
+          "email": "bob32@email.com"
+      },
+      {
+          "id": 2,
+          "first_name": "Bob",
+          "last_name": "Lee",
+          "username": "bob123",
+          "password": "y29ehae34&",
+          "email": "bob32@email.com"
+      }
     ]
  */
 
