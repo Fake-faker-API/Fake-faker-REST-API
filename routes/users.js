@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const { dbQuery } = require('../lib/db-query');
 const catchError = require('../lib/catch-error');
-const getUsers = require('../lib/users-query');
+const { getUsers } = require('../lib/users-query');
 
 
 /**
