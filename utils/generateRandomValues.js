@@ -85,7 +85,7 @@ function generateEmail() {
 
 // Books
 function generateBookTitle() {
-  const randNumber = generateNumber(2, 7);
+  const randNumber = generateNumber(2, 4);
   const title = uniqueNamesGenerator({
     dictionaries: [colors,nouns, adverbs, verbs, adjectives, colors,nouns],
     length: randNumber,
@@ -146,6 +146,16 @@ function generateProductStockQuantity(maxQuantity) {
   return generateNumber(1, maxQuantity);
 }
 
+function generateProductTitle() {
+  const title = uniqueNamesGenerator({
+    dictionaries: [colors, nouns, nouns],
+    length: 2,
+    style: 'capital', 
+    separator: ' '
+  });
+  return title;
+}
+
 // Companies
 function generateCompanyName() {
   const businessEntity = ['Inc', 'LLC', 'Ltd', 'Corp'];
@@ -181,7 +191,7 @@ function generateCountry() {
 }
 
 function generateCity() {
-  const { USCities } = require('./cityNames');
+  const { USCities } = require('./custom_dictionaries/addressData');
   const index = generateNumber(0, USCities.length-1);
 
   return USCities[index];
@@ -239,7 +249,8 @@ function generateMovieLength() {
   return generateNumber(45, 210);
 }
 
-function generateMovieTopCast(numCast) {
+function generateMovieTopCast() {
+  const numCast = generateNumber(1, 3);
   let topCast = [];
   for (let index = 0; index < numCast; index++) {
     topCast.push(generateFullName());
@@ -248,13 +259,16 @@ function generateMovieTopCast(numCast) {
 }
 
 function generateMovieTitle() {
-  const randNumber = generateNumber(2, 10);
+  const randNumber = generateNumber(1, 4);
   const title = uniqueNamesGenerator({
-    dictionaries: [colors,nouns, adverbs, verbs, adjectives, colors,nouns, adverbs, verbs, adjectives],
+    dictionaries: [adjectives, nouns, verbs],
     length: randNumber,
     style: 'capital', 
     separator: ' '
   });
+  if (title.split(' ').length === 1) {
+    return `The ${title}`;
+  }
   return title;
 }
 
@@ -292,6 +306,7 @@ module.exports = {
   generatePrice,
   generateProductCategory,
   generateProductStockQuantity,
+  generateProductTitle,
   generatePublisherName,
   generateStreetAddress,
   generateStreetName,
