@@ -6,6 +6,6 @@
   "url": "/api",
   "groups": [],
   "template": {
-    "withCompare": "false"
+    "withCompare": "true"
   }
 }
