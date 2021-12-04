@@ -5,10 +5,10 @@ const bookGenres = ['Action/adventure','Art/architecture', 'Alternate history', 
                     'Memoir','Picture book','Philosophy','Poetry','Prayer','Political thriller',"Religion, spirituality, and new age",
                     'Romance','Textbook','Satire', 'True crime','Science fiction','Review','Short story','Science','Suspense','Self help',
                     'Thriller','Sports and leisure','Western','Travel','Young adult', 'True crime'];
-const movieGenres = ['Action/adventure', 'Alternate history', 'Biography', "Children's", 'Classic','Cookbook','Comics', 'Coming-of-age', 
-                     'Crime','Encyclopedia','Drama','Fairytale', 'Fantasy','History','Historical fiction','Humor','Horror','Mystery','Math','Paranormal','Memoir',
-                     'Political thriller','Romance','Textbook','Satire', 'True crime','Science fiction', 'Short story','Science','Suspense',
-                     'Thriller', 'Western','Travel','Young adult', 'True crime'];
+const movieGenres = ['Action/adventure', 'Alternate history', 'Biography', "Children's", 'Classic', 'Comics', 'Coming-of-age', 
+                     'Crime','Drama','Fairytale', 'Fantasy','History','Historical fiction','Humor','Horror','Mystery','Paranormal',
+                     'Political thriller','Romance','Satire', 'True crime','Science fiction', 'Independent Short','Suspense',
+                     'Thriller', 'Western','Travel','Young adult'];
 
 module.exports = {
   bookGenres,
