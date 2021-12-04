@@ -14,7 +14,9 @@
     "morgan": "~1.9.1",
     "pg": "^8.7.1",
     "pug": "2.0.0-beta11",
-    "unique-names-generator": "^4.6.0"
+    "random-date-generator": "^1.0.2",
+    "unique-names-generator": "^4.6.0",
+    "zipcodes": "^8.0.0"
   },
   "devDependencies": {
     "eslint": "^8.3.0",
