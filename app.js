@@ -54,7 +54,8 @@ const ipMiddleware = async function (req, res, next) {
       const rps = IPArray.length / ((IPArray[IPArray.length - 1] - IPArray[0]) * MS_TO_S);
       if (rps > RPS_LIMIT) {
           console.log('You are hitting limit', clientIP);
-          res.send('Too manay requests').end();
+          res.status(429).send('Too many requests');
+          return;
       }
   }
   next();
@@ -65,11 +66,6 @@ const updateCache = (ip) => {
   IPArray.push(new Date());
   IPCache.set(ip, IPArray, (IPCache.getTtl(ip) - Date.now()) * MS_TO_S || TIME_FRAME_IN_S);
 };
-
-// app.get('/', function(req, res, next) {
-//   res.redirect('/docs');
-// });
-// app.use(ipMiddleware);
 
 app.use(logger('dev'));
 app.use(express.json());
