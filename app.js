@@ -53,6 +53,7 @@ const ipMiddleware = async function (req, res, next) {
       const rps = IPArray.length / ((IPArray[IPArray.length - 1] - IPArray[0]) * MS_TO_S);
       if (rps > RPS_LIMIT) {
           console.log('You are hitting limit', clientIP);
+          res.send('Too manay requests').end();
       }
   }
   next();
