@@ -66,8 +66,10 @@ const updateCache = (ip) => {
   IPCache.set(ip, IPArray, (IPCache.getTtl(ip) - Date.now()) * MS_TO_S || TIME_FRAME_IN_S);
 };
 
-
-app.use(ipMiddleware);
+// app.get('/', function(req, res, next) {
+//   res.redirect('/docs');
+// });
+// app.use(ipMiddleware);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -76,20 +78,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/products', productsRouter);
-app.use('/companies', companiesRouter);
-app.use('/addresses', addressesRouter);
-app.use('/books', booksRouter);
-app.use('/movies', moviesRouter);
+app.use('/docs', indexRouter);
+app.use('/users', ipMiddleware, usersRouter);
+app.use('/products', ipMiddleware, productsRouter);
+app.use('/companies', ipMiddleware, companiesRouter);
+app.use('/addresses', ipMiddleware, addressesRouter);
+app.use('/books', ipMiddleware, booksRouter);
+app.use('/movies', ipMiddleware, moviesRouter);
 
-app.get('/', (req, res, next) => {
-  res.redirect('/docs');
-})
-
-app.get('/docs', (req, res, next) => {
-  res.sendFile('index.html', { root: path.join(__dirname, '/public/doc') });
-})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
