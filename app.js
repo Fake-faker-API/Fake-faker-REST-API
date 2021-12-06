@@ -48,6 +48,7 @@ const ipMiddleware = async function (req, res, next) {
   }
 
   updateCache(clientIP);
+  console.log('=>', clientIP);
   const IPArray = IPCache.get(clientIP);
   if (IPArray.length > 1) {
       const rps = IPArray.length / ((IPArray[IPArray.length - 1] - IPArray[0]) * MS_TO_S);
