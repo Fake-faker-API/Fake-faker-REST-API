@@ -7,6 +7,8 @@ const logger = require('morgan');
 const requestIP = require('request-ip');
 const nodeCache = require('node-cache');
 const isIp = require('is-ip');
+var moesif = require('moesif-nodejs');
+const config = require("./lib/config");
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -22,6 +24,28 @@ const {
   MS_TO_S,
   RPS_LIMIT
 } = require('./utils/constants/rate-limiting-const');
+
+// config.DATABASE_URL
+
+const options = {
+
+  applicationId: config.MOESIF_APPLICATION_ID,
+
+  logBody: true,
+
+  identifyUser: function (req, res) {
+    if (req.user) {
+      return req.user.id;
+    }
+    return undefined;
+  },
+
+  getSessionToken: function (req, res) {
+    return req.headers['Authorization'];
+  }
+};
+
+var moesifMiddleware = moesif(options);
 
 const IPCache = new nodeCache({ stdTTL: TIME_FRAME_IN_S, deleteOnExpire: false, checkperiod: TIME_FRAME_IN_S });
 IPCache.on('expired', (key, value) => {
@@ -67,6 +91,7 @@ const updateCache = (ip) => {
   IPCache.set(ip, IPArray, (IPCache.getTtl(ip) - Date.now()) * MS_TO_S || TIME_FRAME_IN_S);
 };
 
+app.use(moesifMiddleware);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
