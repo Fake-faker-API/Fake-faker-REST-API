@@ -82,7 +82,11 @@ app.use('/addresses', addressesRouter);
 app.use('/books', booksRouter);
 app.use('/movies', moviesRouter);
 
-app.get('/docs', (re, res, next) => {
+app.get('/', (req, res, next) => {
+  res.redirect('/docs');
+})
+
+app.get('/docs', (req, res, next) => {
   res.sendFile('index.html', { root: path.join(__dirname, '/public/doc') });
 })
 
