@@ -43,11 +43,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/docs', indexRouter);
 app.use('/users', ipMiddleware(IPCache), usersRouter);
-app.use('/products', ipMiddleware, productsRouter);
-app.use('/companies', ipMiddleware, companiesRouter);
-app.use('/addresses', ipMiddleware, addressesRouter);
-app.use('/books', ipMiddleware, booksRouter);
-app.use('/movies', ipMiddleware, moviesRouter);
+app.use('/products', ipMiddleware(IPCache), productsRouter);
+app.use('/companies', ipMiddleware(IPCache), companiesRouter);
+app.use('/addresses', ipMiddleware(IPCache), addressesRouter);
+app.use('/books', ipMiddleware(IPCache), booksRouter);
+app.use('/movies', ipMiddleware(IPCache), moviesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
