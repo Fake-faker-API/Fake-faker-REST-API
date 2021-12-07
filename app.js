@@ -4,10 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const requestIP = require('request-ip');
 const nodeCache = require('node-cache');
-const isIp = require('is-ip');
-var moesif = require('moesif-nodejs');
+const moesif = require('moesif-nodejs');
 
 const { ipMiddleware } = require('./middleware/rateLimiting')
 const { options } = require('./middleware/moesif');
@@ -27,9 +25,8 @@ const {
   RPS_LIMIT
 } = require('./utils/constants/rate-limiting-const');
 
-const moesifMiddleware = moesif(options);
-
 const app = express();
+const moesifMiddleware = moesif(options);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
