@@ -23,24 +23,27 @@ const { getAddresses } = require('../lib/addresses-query');
  * 
     [
       {
-          "id": 1,
-          "street_number": "1000",
-          "street_name": "Washington ave",
-          "city": "Chicago",
-          "state": "IL",
-          "zipcode": "60640",
-          "country": "US"
+        "id": 1,
+        "street_number": "3169",
+        "street_name": "Buckingham Drive",
+        "city": "Beach",
+        "state": "VA",
+        "zipcode": "44612",
+        "country": "US"
       },
       {
-          "id": 2,
-          "street_number": "1000",
-          "street_name": "Washington ave",
-          "city": "Chicago",
-          "state": "IL",
-          "zipcode": "60640",
-          "country": "US"
+        "id": 2,
+        "street_number": "9853",
+        "street_name": "2nd Avenue",
+        "city": "Pryor",
+        "state": "LA",
+        "zipcode": "74459",
+        "country": "US"
       }
     ]
+ */
+/**
+ * @apiSampleRequest /addresses
  */
 
 router.get('/', catchError(async (req, res, next) => {
