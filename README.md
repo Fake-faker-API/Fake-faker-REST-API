@@ -1,3 +1,2 @@
 # Overview
-
-This API would let engineers/developers to generate fake data.
+Faker type REST API, allows to generate fake data.
