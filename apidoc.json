@@ -1,10 +1,10 @@
 {
   "name": "Fake Faker API",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Fake Faker API Documentation",
   "title": "Fake Faker API",
-  "url": "/api",
-  "groups": [],
+  "url": "https://fakefakerapi.herokuapp.com",
+  "groups": ["Users", "Addresses", "Companies", "Books", "Movies"],
   "template": {
     "withCompare": "true"
   }
