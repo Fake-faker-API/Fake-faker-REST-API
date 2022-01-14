@@ -47,7 +47,38 @@
 <script id="template-project" type="text/x-handlebars-template">
   <div class="pull-left">
     <h2>Fake faker API</h2>
-    <p>Some overview here</p>
+    <br>
+    <img src="./doc/assets/logo.png" alt="Beaming Face With Smiling Eyes emoji" width="64" height="64">
+    <br>
+    <br>
+
+    <p>This collection of open-source APIs was inspired by 
+      <a target="_blank" href="https://fakerapi.it/en">
+        FAKER API</a>.
+        <br>
+
+        Further below you can find a description of each endpoint and the data it returns. 
+        Each request responds with a JSON containing a 100 objects.
+        <br>
+        <br>
+
+        This API allows to retrieve/generate:
+        <ul>
+          <li>addresses</li>
+          <li>users</li>
+          <li>books</li>
+          <li>companies</li>
+          <li>movies</li>
+          <li>products</li>
+        </ul>
+      </p>
+      <br>
+      <p>
+        The data is rather realistic but fake. Some values are quirky, and that was done on purpose!
+      </p>
+      <p>
+        Enjoy!
+      </p>
   </div>
   <div class="pull-right">
     <div id="version" class="well well-sm">
@@ -100,21 +131,6 @@
     <div class="pull-left">
       <h1><span class="color-primary">{{underscoreToSpace article.groupTitle}}</span>{{#if article.title}} <span class="text-muted">|</span> {{article.title}}{{/if}}</h1>
     </div>
-    {{#if template.withCompare}}
-    <div class="pull-right">
-      <div class="btn-group">
-        <button class="version btn btn-default dropdown-toggle" data-toggle="dropdown">
-          <strong>{{article.version}}</strong>&nbsp;<span class="caret"></span>
-        </button>
-        <ul class="versions dropdown-menu open-left">
-          <li class="disabled"><a href="#">{{__ "compare changes to:"}}</a></li>
-        {{#each versions}}
-          <li class="version"><a href="#">{{this}}</a></li>
-        {{/each}}
-        </ul>
-      </div>
-    </div>
-    {{/if}}
     <div class="clearfix"></div>
 
     {{#if article.author}}<h4 class="muted">Authored by: {{article.author}}</h4>{{/if}}
