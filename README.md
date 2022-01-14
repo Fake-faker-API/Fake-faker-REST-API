@@ -1,8 +1,6 @@
 # Overview
 This collection of open-source APIs was inspired by 
  [FAKER API](https://fakerapi.it/en)
- 
- The data is rather realistic but fake. Some values are quirky, and that was done on purpose!
 
 Enjoy!
         
