@@ -47,27 +47,12 @@
 <script id="template-project" type="text/x-handlebars-template">
   <div class="pull-left">
     <h2>Fake faker API</h2>
+    <p>Some overview here</p>
   </div>
   <div class="pull-right">
-    {{#if template.withCompare}}
-    <div class="btn-group">
-      <button id="version" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown">
-        <strong>{{version}}</strong>&nbsp;<span class="caret"></span>
-      </button>
-      <ul id="versions" class="dropdown-menu open-left">
-        <li><a id="compareAllWithPredecessor" href="#">{{__ "Compare all with predecessor"}}</a></li>
-        <li class="divider"></li>
-        <li class="disabled"><a href="#">{{__ "show up to version:"}}</a></li>
-      {{#each versions}}
-        <li class="version"><a href="#">{{this}}</a></li>
-      {{/each}}
-      </ul>
-    </div>
-    {{else}}
     <div id="version" class="well well-sm">
       <strong>{{version}}</strong>
     </div>
-    {{/if}}
   </div>
   <div class="clearfix"></div>
 </script>
