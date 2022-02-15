@@ -30,47 +30,47 @@ describe("/movies endpoint", function () {
     ), 1000);
   });
 
-   it("Movies should have a set of properties", function (done) {
-     setTimeout(() => request.get(
-       {
-         url : urlBase + "/movies" 
-       },
-       function(error, response, body){
-
-         body = {};
-         try {
-           body = JSON.parse(response.body);
-         }
-         catch(error){
-           body = {};
-         }
-         const movie = body[0];
-         expect(response.statusCode).to.equal(200);
-         expect(movie.should.have.property('id'));
-         expect(movie.should.have.property('title'));
-         expect(movie.should.have.property('genre'));
-         expect(movie.should.have.property('director'));
-         expect(movie.should.have.property('description'));
-         expect(movie.should.have.property('movie_length_minutes'));
-         expect(movie.should.have.property('date_released'));
-         expect(movie.should.have.property('top_cast'));
-         done();
-       }
-     ), 2000);
-   });
-
-   it("Movie should not have properties: street_name, city", (done) => {
+  it("Movies should have a set of properties", function (done) {
     setTimeout(() => request.get(
       {
-        url : urlBase + "/movies" 
+        url: urlBase + "/movies"
       },
-      function(error, response, body){
+      function (error, response, body) {
 
         body = {};
         try {
           body = JSON.parse(response.body);
         }
-        catch(error){
+        catch (error) {
+          body = {};
+        }
+        const movie = body[0];
+        expect(response.statusCode).to.equal(200);
+        expect(movie.should.have.property('id'));
+        expect(movie.should.have.property('title'));
+        expect(movie.should.have.property('genre'));
+        expect(movie.should.have.property('director'));
+        expect(movie.should.have.property('description'));
+        expect(movie.should.have.property('movie_length_minutes'));
+        expect(movie.should.have.property('date_released'));
+        expect(movie.should.have.property('top_cast'));
+        done();
+      }
+    ), 2000);
+  });
+
+  it("Movie should not have properties: street_name, city", (done) => {
+    setTimeout(() => request.get(
+      {
+        url: urlBase + "/movies"
+      },
+      function (error, response, body) {
+
+        body = {};
+        try {
+          body = JSON.parse(response.body);
+        }
+        catch (error) {
           body = {};
         }
 
@@ -85,21 +85,21 @@ describe("/movies endpoint", function () {
 
   it("Movie property values should be of correct type", (done) => {
     const movieIndex = getRandomNumber(1, 100);
-  
+
     setTimeout(() => request.get(
       {
-        url : urlBase + "/movies" 
+        url: urlBase + "/movies"
       },
-      function(error, response, body){
-  
+      function (error, response, body) {
+
         body = {};
         try {
           body = JSON.parse(response.body);
         }
-        catch(error){
+        catch (error) {
           body = {};
         }
-  
+
         const movie = body[movieIndex];
         expect(response.statusCode).to.equal(200);
         expect(movie.id).to.be.a('number');
@@ -114,24 +114,24 @@ describe("/movies endpoint", function () {
       }
     ), 1000);
   });
-  
+
   it("movie property values should have minimum length/value", (done) => {
     const movieIndex = getRandomNumber(1, 100);
-  
+
     setTimeout(() => request.get(
       {
-        url : urlBase + "/movies" 
+        url: urlBase + "/movies"
       },
-      function(error, response, body){
-  
+      function (error, response, body) {
+
         body = {};
         try {
           body = JSON.parse(response.body);
         }
-        catch(error){
+        catch (error) {
           body = {};
         }
-  
+
         const movie = body[movieIndex];
         expect(response.statusCode).to.equal(200);
         expect(movie.title).to.have.lengthOf.above(1);

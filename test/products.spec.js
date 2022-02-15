@@ -29,45 +29,45 @@ describe("/products endpoint", function () {
     ), 1000);
   });
 
-   it("Product should have a set of properties", function (done) {
-     setTimeout(() => request.get(
-       {
-         url : urlBase + "/products" 
-       },
-       function(error, response, body){
-
-         body = {};
-         try {
-           body = JSON.parse(response.body);
-         }
-         catch(error){
-           body = {};
-         }
-         const product = body[0];
-         expect(response.statusCode).to.equal(200);
-         expect(product.should.have.property('id'));
-         expect(product.should.have.property('title'));
-         expect(product.should.have.property('description'));
-         expect(product.should.have.property('price'));
-         expect(product.should.have.property('category'));
-         expect(product.should.have.property('sku'));
-         expect(product.should.have.property('stock_quantity'));
-         done();
-       }
-     ), 2000);
-   });
-   it("Product should not have properties: street_name, city", (done) => {
+  it("Product should have a set of properties", function (done) {
     setTimeout(() => request.get(
       {
-        url : urlBase + "/products" 
+        url: urlBase + "/products"
       },
-      function(error, response, body){
+      function (error, response, body) {
 
         body = {};
         try {
           body = JSON.parse(response.body);
         }
-        catch(error){
+        catch (error) {
+          body = {};
+        }
+        const product = body[0];
+        expect(response.statusCode).to.equal(200);
+        expect(product.should.have.property('id'));
+        expect(product.should.have.property('title'));
+        expect(product.should.have.property('description'));
+        expect(product.should.have.property('price'));
+        expect(product.should.have.property('category'));
+        expect(product.should.have.property('sku'));
+        expect(product.should.have.property('stock_quantity'));
+        done();
+      }
+    ), 2000);
+  });
+  it("Product should not have properties: street_name, city", (done) => {
+    setTimeout(() => request.get(
+      {
+        url: urlBase + "/products"
+      },
+      function (error, response, body) {
+
+        body = {};
+        try {
+          body = JSON.parse(response.body);
+        }
+        catch (error) {
           body = {};
         }
 
@@ -82,21 +82,21 @@ describe("/products endpoint", function () {
 
   it("Product property values should be of correct type", (done) => {
     const productIndex = getRandomNumber(1, 100);
-  
+
     setTimeout(() => request.get(
       {
-        url : urlBase + "/products" 
+        url: urlBase + "/products"
       },
-      function(error, response, body){
-  
+      function (error, response, body) {
+
         body = {};
         try {
           body = JSON.parse(response.body);
         }
-        catch(error){
+        catch (error) {
           body = {};
         }
-  
+
         const product = body[productIndex];
         expect(response.statusCode).to.equal(200);
         expect(product.id).to.be.a('number');
@@ -110,24 +110,24 @@ describe("/products endpoint", function () {
       }
     ), 1000);
   });
-  
+
   it("Product property values should have minimum length/value", (done) => {
     const productIndex = getRandomNumber(1, 100);
-  
+
     setTimeout(() => request.get(
       {
-        url : urlBase + "/products" 
+        url: urlBase + "/products"
       },
-      function(error, response, body){
-  
+      function (error, response, body) {
+
         body = {};
         try {
           body = JSON.parse(response.body);
         }
-        catch(error){
+        catch (error) {
           body = {};
         }
-  
+
         const product = body[productIndex];
         expect(response.statusCode).to.equal(200);
         expect(product.title).to.have.lengthOf.above(1);

@@ -30,48 +30,48 @@ describe("/books endpoint", function () {
     ), 1000);
   });
 
-   it("Book object should be of correct type and have a set of predefined properties", function (done) {
-     setTimeout(() => request.get(
-       {
-         url : urlBase + "/books" 
-       },
-       function(error, response, body){
-
-         body = {};
-         try {
-           body = JSON.parse(response.body);
-         }
-         catch(error){
-           body = {};
-         }
-         const book = body[0];
-         expect(response.statusCode).to.equal(200);
-         expect(book).to.be.an('object');
-         expect(book.should.have.property('id'));
-         expect(book.should.have.property('title'));
-         expect(book.should.have.property('author'));
-         expect(book.should.have.property('genre'));
-         expect(book.should.have.property('description'));
-         expect(book.should.have.property('isbn'));
-         expect(book.should.have.property('date_published'));
-         expect(book.should.have.property('publisher'));
-         done();
-       }
-     ), 2000);
-   });
-
-   it("Book should not have properties: street_name, city", (done) => {
+  it("Book object should be of correct type and have a set of predefined properties", function (done) {
     setTimeout(() => request.get(
       {
-        url : urlBase + "/books" 
+        url: urlBase + "/books"
       },
-      function(error, response, body){
+      function (error, response, body) {
 
         body = {};
         try {
           body = JSON.parse(response.body);
         }
-        catch(error){
+        catch (error) {
+          body = {};
+        }
+        const book = body[0];
+        expect(response.statusCode).to.equal(200);
+        expect(book).to.be.an('object');
+        expect(book.should.have.property('id'));
+        expect(book.should.have.property('title'));
+        expect(book.should.have.property('author'));
+        expect(book.should.have.property('genre'));
+        expect(book.should.have.property('description'));
+        expect(book.should.have.property('isbn'));
+        expect(book.should.have.property('date_published'));
+        expect(book.should.have.property('publisher'));
+        done();
+      }
+    ), 2000);
+  });
+
+  it("Book should not have properties: street_name, city", (done) => {
+    setTimeout(() => request.get(
+      {
+        url: urlBase + "/books"
+      },
+      function (error, response, body) {
+
+        body = {};
+        try {
+          body = JSON.parse(response.body);
+        }
+        catch (error) {
           body = {};
         }
 
@@ -86,21 +86,21 @@ describe("/books endpoint", function () {
 
   it("Book property values should be of correct type", (done) => {
     const bookIndex = getRandomNumber(1, 100);
-  
+
     setTimeout(() => request.get(
       {
-        url : urlBase + "/books" 
+        url: urlBase + "/books"
       },
-      function(error, response, body){
-  
+      function (error, response, body) {
+
         body = {};
         try {
           body = JSON.parse(response.body);
         }
-        catch(error){
+        catch (error) {
           body = {};
         }
-  
+
         const book = body[bookIndex];
         expect(response.statusCode).to.equal(200);
         expect(book.id).to.be.a('number');
@@ -115,24 +115,24 @@ describe("/books endpoint", function () {
       }
     ), 1000);
   });
-  
+
   it("Book property values should have minimum length", (done) => {
     const bookIndex = getRandomNumber(1, 100);
-  
+
     setTimeout(() => request.get(
       {
-        url : urlBase + "/books" 
+        url: urlBase + "/books"
       },
-      function(error, response, body){
-  
+      function (error, response, body) {
+
         body = {};
         try {
           body = JSON.parse(response.body);
         }
-        catch(error){
+        catch (error) {
           body = {};
         }
-  
+
         const book = body[bookIndex];
         expect(response.statusCode).to.equal(200);
         expect(book.title).to.have.lengthOf.above(1);

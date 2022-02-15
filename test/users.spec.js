@@ -29,45 +29,45 @@ describe("/users endpoint", function () {
     ), 1000);
   });
 
-   it("User should have a set of properties", function (done) {
-     setTimeout(() => request.get(
-       {
-         url : urlBase + "/users" 
-       },
-       function(error, response, body){
-
-         body = {};
-         try {
-           body = JSON.parse(response.body);
-         }
-         catch(error){
-           body = {};
-         }
-         const user = body[0];
-         expect(response.statusCode).to.equal(200);
-         expect(user.should.have.property('id'));
-         expect(user.should.have.property('first_name'));
-         expect(user.should.have.property('last_name'));
-         expect(user.should.have.property('username'));
-         expect(user.should.have.property('password'));
-         expect(user.should.have.property('email'));
-         done();
-       }
-     ), 2000);
-   });
-
-   it("User should not have properties: street_name, city", (done) => {
+  it("User should have a set of properties", function (done) {
     setTimeout(() => request.get(
       {
-        url : urlBase + "/users" 
+        url: urlBase + "/users"
       },
-      function(error, response, body){
+      function (error, response, body) {
 
         body = {};
         try {
           body = JSON.parse(response.body);
         }
-        catch(error){
+        catch (error) {
+          body = {};
+        }
+        const user = body[0];
+        expect(response.statusCode).to.equal(200);
+        expect(user.should.have.property('id'));
+        expect(user.should.have.property('first_name'));
+        expect(user.should.have.property('last_name'));
+        expect(user.should.have.property('username'));
+        expect(user.should.have.property('password'));
+        expect(user.should.have.property('email'));
+        done();
+      }
+    ), 2000);
+  });
+
+  it("User should not have properties: street_name, city", (done) => {
+    setTimeout(() => request.get(
+      {
+        url: urlBase + "/users"
+      },
+      function (error, response, body) {
+
+        body = {};
+        try {
+          body = JSON.parse(response.body);
+        }
+        catch (error) {
           body = {};
         }
 
@@ -82,21 +82,21 @@ describe("/users endpoint", function () {
 
   it("User property values should be of correct type", (done) => {
     const userIndex = getRandomNumber(1, 100);
-  
+
     setTimeout(() => request.get(
       {
-        url : urlBase + "/users" 
+        url: urlBase + "/users"
       },
-      function(error, response, body){
-  
+      function (error, response, body) {
+
         body = {};
         try {
           body = JSON.parse(response.body);
         }
-        catch(error){
+        catch (error) {
           body = {};
         }
-  
+
         const user = body[userIndex];
         expect(response.statusCode).to.equal(200);
         expect(user.id).to.be.a('number');
@@ -109,24 +109,24 @@ describe("/users endpoint", function () {
       }
     ), 1000);
   });
-  
+
   it("User property values should have minimum length", (done) => {
     const userIndex = getRandomNumber(1, 100);
-  
+
     setTimeout(() => request.get(
       {
-        url : urlBase + "/users" 
+        url: urlBase + "/users"
       },
-      function(error, response, body){
-  
+      function (error, response, body) {
+
         body = {};
         try {
           body = JSON.parse(response.body);
         }
-        catch(error){
+        catch (error) {
           body = {};
         }
-  
+
         const user = body[userIndex];
         expect(response.statusCode).to.equal(200);
         expect(user.last_name).to.have.lengthOf.above(1);
