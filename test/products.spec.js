@@ -56,7 +56,7 @@ describe("/products endpoint", function () {
       }
     ), 2000);
   });
-  it("Product should not have properties: street_name, city", (done) => {
+  it("Product should not have properties: first_name, city", (done) => {
     setTimeout(() => request.get(
       {
         url: urlBase + "/products"
@@ -73,7 +73,7 @@ describe("/products endpoint", function () {
 
         const product = body[0];
         expect(response.statusCode).to.equal(200);
-        expect(product.should.not.have.property('street_name'));
+        expect(product.should.not.have.property('first_name'));
         expect(product.should.not.have.property('city'));
         done();
       }
