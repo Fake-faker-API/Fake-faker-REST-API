@@ -1,5 +1,9 @@
 # Overview
-Faker type REST API, allows to generate fake data.
+This collection of open-source APIs was inspired by 
+ [FAKER API](https://fakerapi.it/en)
+
+Enjoy!
+        
 
 Base url:
 `fakefakerapi.herokuapp.com`
