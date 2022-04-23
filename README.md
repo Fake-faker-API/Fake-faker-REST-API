@@ -192,4 +192,6 @@ Todo:
 - increase max number of objects to 1000 (for each category)
 - add ability to test service on docs page
 - then need to create a new docs page
-- update Readme, follow Readme for Sweater 
+- update Readme, follow Readme for Sweater
+- add linting on commit
+- CI/CD
