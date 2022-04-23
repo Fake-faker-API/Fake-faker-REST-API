@@ -182,4 +182,14 @@ Success-Response
   }
 ]
   ```
-
+Todo:
+- add /api to base url for endpoints
+**parameters to add**
+- each endpoint shoudld have **min, max**
+- addresses: filter by state
+- books, movies: filter by genre
+- companies filter by state
+- increase max number of objects to 1000 (for each category)
+- add ability to test service on docs page
+- then need to create a new docs page
+- update Readme, follow Readme for Sweater 
