@@ -14,3 +14,5 @@ module.exports = {
   bookGenres,
   movieGenres
 }
+
+//TODO should go into costants
