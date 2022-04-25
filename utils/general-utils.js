@@ -4,10 +4,13 @@ function validateStringParamIsInt({ value, minInt, maxInt }) {
   return totalRowsInt.toString() === value && totalRowsInt >= minInt && totalRowsInt <= maxInt
 }
 
-function isValidState(stateName) {
-  const states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA',' WV','WI','WY'];
-
-  return states.includes(stateName.toUpperCase());
+function isValidEnum(elementName, list) {
+  for (let index = 0; index < list.length; index++) {
+    if (list[index].toUpperCase() === elementName.toUpperCase()) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function removeDuplicatesFromArr(arr) {
@@ -16,6 +19,6 @@ function removeDuplicatesFromArr(arr) {
 
 module.exports = {
   validateStringParamIsInt,
-  isValidState,
+  isValidEnum,
   removeDuplicatesFromArr
 }

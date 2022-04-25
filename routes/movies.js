@@ -7,9 +7,11 @@ const {
 } = require("../lib/db-query");
 const catchError = require("../lib/catch-error");
 const {
-  getMovies
+  getMovies,
+  getMoviesIncludeGenre
 } = require("../lib/movies-query");
 const { validateStringParamIsInt } = require('../utils/general-utils');
+const { validateFilterByGenre } = require('./helper-functions/validate-filter-by-genre-param');
 const { MIN_ROWS, MAX_ROWS } = require('../utils/constants/query-results-rows-limit-const');
 
 /**
@@ -52,8 +54,18 @@ router.get(
     if (totalRows && validateStringParamIsInt({ value: totalRows, minInt: MIN_ROWS, maxInt: MAX_ROWS })) {
       rowsLimitParam = parseInt(totalRows, 10);
     }
-    let result = await getMovies(rowsLimitParam);
-    res.json(result.rows);
+
+    let filterByGenre = req.query.genre;
+
+    if (filterByGenre) {
+      filterByGenre = validateFilterByGenre(filterByGenre);
+      console.log(filterByGenre)
+      let result = await getMoviesIncludeGenre(rowsLimitParam, filterByGenre);
+      res.json(result.rows);
+    } else {
+      let result = await getMovies(rowsLimitParam);
+      res.json(result.rows);
+    }
   })
 );
 
