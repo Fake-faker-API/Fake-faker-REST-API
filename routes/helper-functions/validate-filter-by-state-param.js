@@ -1,7 +1,6 @@
 const { isValidEnum, removeDuplicatesFromArr } = require('../../utils/general-utils');
 const { STATES } = require('../../utils/constants/states')
 
-
 function validateFilterByState(filterByStateParam) {
   if (!Array.isArray(filterByStateParam)) filterByStateParam = [filterByStateParam];
 

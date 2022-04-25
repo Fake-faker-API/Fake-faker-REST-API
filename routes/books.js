@@ -1,7 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const fs = require('fs');
-const path = require('path');
 const catchError = require("../lib/catch-error");
 const { getBooks, getBooksIncludeGenre } = require("../lib/books-query");
 const { validateStringParamIsInt } = require('../utils/general-utils');
