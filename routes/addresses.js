@@ -7,46 +7,6 @@ const { getAddresses, getAddressesIncludeState } = require('../lib/addresses-que
 const { validateStringParamIsInt } = require('../utils/general-utils');
 const { MIN_ROWS, MAX_ROWS } = require('../utils/constants/query-results-rows-limit-const');
 const { validateFilterByState } = require('./helper-functions/validate-filter-by-state-param')
-/**
- * @api {get} /addresses Retrieves all addresses
- * @apiGroup Addresses
- * 
- * @apiSuccess {Object[]} address                    List of addresses.
- * @apiSuccess {Number}   address.id                 Id of the address.
- * @apiSuccess {String}   address.street_number      Street number.
- * @apiSuccess {String}   address.street_name        Street name.
- * @apiSuccess {String}   address.city               City.
- * @apiSuccess {String}   address.state              State.
- * @apiSuccess {String}   address.country            Country.
- * 
- * 
- * @apiSuccessExample {json} Success-Response:
- * HTTP/1.1 200 OK
- * 
-    [
-      {
-        "id": 1,
-        "street_number": "3169",
-        "street_name": "Buckingham Drive",
-        "city": "Beach",
-        "state": "VA",
-        "zipcode": "44612",
-        "country": "US"
-      },
-      {
-        "id": 2,
-        "street_number": "9853",
-        "street_name": "2nd Avenue",
-        "city": "Pryor",
-        "state": "LA",
-        "zipcode": "74459",
-        "country": "US"
-      }
-    ]
- */
-/**
- * @apiSampleRequest /addresses
- */
 
 router.get('/', catchError(async (req, res, next) => {
   let totalRows = req.query.total_rows
