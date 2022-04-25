@@ -55,7 +55,7 @@ router.get('/', catchError(async (req, res, next) => {
     rowsLimitParam = parseInt(totalRows, 10);
   }
 
-  let filterByState = req.query.limit_to_state; // filterByState could be a string or an array of strings
+  let filterByState = req.query.state; // state could be a string or an array of strings
   
   if (filterByState ) {
     filterByState = validateFilterByState(filterByState);
