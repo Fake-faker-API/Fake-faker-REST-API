@@ -10,7 +10,6 @@ const moesif = require('moesif-nodejs');
 const { ipMiddleware } = require('./middleware/rateLimiting')
 const { options } = require('./middleware/moesif');
 
-const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
 const companiesRouter = require('./routes/companies');
@@ -30,7 +29,6 @@ const moesifMiddleware = moesif(options);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
 const IPCache = new nodeCache({ stdTTL: TIME_FRAME_IN_S, deleteOnExpire: false, checkperiod: TIME_FRAME_IN_S });
 
 app.use(moesifMiddleware);
@@ -38,10 +36,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/docs', indexRouter);
 app.use('/api/v1/users', ipMiddleware(IPCache), usersRouter);
 app.use('/api/v1/products', ipMiddleware(IPCache), productsRouter);
 app.use('/api/v1/companies', ipMiddleware(IPCache), companiesRouter);
@@ -49,6 +44,10 @@ app.use('/api/v1/addresses', ipMiddleware(IPCache), addressesRouter);
 app.use('/api/v1/books', ipMiddleware(IPCache), booksRouter);
 app.use('/api/v1/movies', ipMiddleware(IPCache), moviesRouter);
 
+//TODO this should be redirected to the docs, when docs are ready
+app.use('/', function(req, res, next) {
+  next(createError(404));
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
