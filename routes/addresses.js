@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const catchError = require("../lib/catch-error");
 const { getAddresses } = require('../lib/addresses-query');
+const { MIN_ROWS, MAX_ROWS } = require('../utils/constants/query-results-rows-limit-const');
 
 /**
  * @api {get} /addresses Retrieves all addresses
@@ -47,7 +48,12 @@ const { getAddresses } = require('../lib/addresses-query');
  */
 
 router.get('/', catchError(async (req, res, next) => {
-    let result = await getAddresses();
+  let totalRows = req.query.totalRows
+  let rowsLimitParam = 10;
+  if (totalRows && validateStringParamIsInt({ value: totalRows, minInt: MIN_ROWS, maxInt: MAX_ROWS })) {
+    rowsLimitParam = parseInt(totalRows, 10);
+  }
+    let result = await getAddresses(rowsLimitParam);
     res.json(result.rows);
 }));
 

@@ -3,7 +3,8 @@ var router = express.Router();
 const fs = require('fs');
 const path = require('path');
 const catchError = require("../lib/catch-error");
-const { getBooks } = require("../lib/books-query")
+const { getBooks } = require("../lib/books-query");
+const { MIN_ROWS, MAX_ROWS } = require('../utils/constants/query-results-rows-limit-const');
 
 /**
  * @api {get} /books Retrieves all books
@@ -48,8 +49,12 @@ const { getBooks } = require("../lib/books-query")
  */
 
 router.get('/', catchError(async (req, res, next) => {
- console.log(typeof getBooks)
-    let result = await getBooks();
+  let totalRows = req.query.totalRows
+  let rowsLimitParam = 10;
+  if (totalRows && validateStringParamIsInt({ value: totalRows, minInt: MIN_ROWS, maxInt: MAX_ROWS })) {
+    rowsLimitParam = parseInt(totalRows, 10);
+  }
+    let result = await getBooks(rowsLimitParam);
     res.json(result.rows);
 }));
 
