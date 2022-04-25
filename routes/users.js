@@ -5,6 +5,8 @@ const path = require('path');
 const { dbQuery } = require('../lib/db-query');
 const catchError = require('../lib/catch-error');
 const { getUsers } = require('../lib/users-query');
+const { validateStringParamIsInt } = require('../utils/general-utils');
+const { MIN_ROWS, MAX_ROWS } = require('../utils/constants/query-results-rows-limit-const');
 
 
 /**
@@ -43,7 +45,12 @@ const { getUsers } = require('../lib/users-query');
  */
 
 router.get('/', catchError(async (req, res, next) => {
-    let result = await getUsers();
+  let totalRows = req.query.totalRows
+  let rowsLimitParam = 10;
+  if (totalRows && validateStringParamIsInt({ value: totalRows, minInt: MIN_ROWS, maxInt: MAX_ROWS })) {
+    rowsLimitParam = parseInt(totalRows, 10);
+  }
+    let result = await getUsers(rowsLimitParam);
     res.json(result.rows);
 }));
 
