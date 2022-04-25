@@ -18,3 +18,5 @@ const areaCodes = ['907', '205', '251', '256', '334', '479', '501', '870', '480'
 module.exports = {
   areaCodes
 }
+
+//TODO should go into constants
