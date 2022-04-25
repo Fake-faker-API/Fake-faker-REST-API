@@ -6,6 +6,7 @@ const catchError = require("../lib/catch-error");
 const {
     getCompanies
 } = require("../lib/companies-query");
+const { validateStringParamIsInt } = require('../utils/general-utils');
 const { MIN_ROWS, MAX_ROWS } = require('../utils/constants/query-results-rows-limit-const');
 
 /**

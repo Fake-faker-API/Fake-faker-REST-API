@@ -5,6 +5,7 @@ const path = require('path');
 const { dbQuery } = require("../lib/db-query");
 const catchError = require("../lib/catch-error");
 const { getProducts } = require('../lib/products-query');
+const { validateStringParamIsInt } = require('../utils/general-utils');
 const { MIN_ROWS, MAX_ROWS } = require('../utils/constants/query-results-rows-limit-const');
 
 /**

@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const catchError = require("../lib/catch-error");
 const { getBooks } = require("../lib/books-query");
+const { validateStringParamIsInt } = require('../utils/general-utils');
 const { MIN_ROWS, MAX_ROWS } = require('../utils/constants/query-results-rows-limit-const');
 
 /**
