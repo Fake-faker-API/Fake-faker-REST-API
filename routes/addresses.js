@@ -3,10 +3,10 @@ var router = express.Router();
 const fs = require('fs');
 const path = require('path');
 const catchError = require("../lib/catch-error");
-const { getAddresses } = require('../lib/addresses-query');
+const { getAddresses, getAddressesIncludeState } = require('../lib/addresses-query');
 const { validateStringParamIsInt } = require('../utils/general-utils');
 const { MIN_ROWS, MAX_ROWS } = require('../utils/constants/query-results-rows-limit-const');
-
+const { validateFilterByState } = require('./helper-functions/validate-filter-by-state-param')
 /**
  * @api {get} /addresses Retrieves all addresses
  * @apiGroup Addresses
@@ -54,8 +54,18 @@ router.get('/', catchError(async (req, res, next) => {
   if (totalRows && validateStringParamIsInt({ value: totalRows, minInt: MIN_ROWS, maxInt: MAX_ROWS })) {
     rowsLimitParam = parseInt(totalRows, 10);
   }
+
+  let filterByState = req.query.limit_to_state; // filterByState could be a string or an array of strings
+  
+  if (filterByState ) {
+    filterByState = validateFilterByState(filterByState);
+
+    let result = await getAddressesIncludeState(rowsLimitParam, filterByState);
+    res.json(result.rows);
+  } else {
     let result = await getAddresses(rowsLimitParam);
     res.json(result.rows);
+  }
 }));
 
 module.exports = router;
