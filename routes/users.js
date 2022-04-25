@@ -45,7 +45,7 @@ const { MIN_ROWS, MAX_ROWS } = require('../utils/constants/query-results-rows-li
  */
 
 router.get('/', catchError(async (req, res, next) => {
-  let totalRows = req.query.totalRows
+  let totalRows = req.query.total_rows
   let rowsLimitParam = 10;
   if (totalRows && validateStringParamIsInt({ value: totalRows, minInt: MIN_ROWS, maxInt: MAX_ROWS })) {
     rowsLimitParam = parseInt(totalRows, 10);
