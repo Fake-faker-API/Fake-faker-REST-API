@@ -1,6 +1,4 @@
-const { isValidEnum, removeDuplicatesFromArr } = require('../../utils/general-utils');
-const { bookGenres } = require('../../utils/custom_dictionaries/genres');
-
+const { removeDuplicatesFromArr } = require('../../utils/general-utils');
 
 function validateFilterByGenre(filterByGenreParam) {
 

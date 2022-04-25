@@ -18,10 +18,7 @@ const booksRouter = require('./routes/books');
 const moviesRouter = require('./routes/movies');
 
 const {
-  TIME_FRAME_IN_S,
-  TIME_FRAME_IN_MS,
-  MS_TO_S,
-  RPS_LIMIT
+  TIME_FRAME_IN_S
 } = require('./utils/constants/rate-limiting-const');
 
 const app = express();
