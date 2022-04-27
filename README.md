@@ -1,19 +1,24 @@
-# Overview
-This collection of open-source APIs was inspired by 
- [FAKER API](https://fakerapi.it/en)
+<div align="center">
+  <img width="105" src="https://user-images.githubusercontent.com/41551585/165626019-8bec6946-ee51-45cb-9b1e-352527bac297.svg"/>
+  <img width="155" src="https://user-images.githubusercontent.com/41551585/165625869-a7673ce2-eb50-437e-bf6a-44297088f7f7.jpeg"/>
+   <img width="85" src="https://user-images.githubusercontent.com/41551585/165635092-39fbbd0f-2aa3-423f-b160-901328c30aef.svg"/>
+  <img width="155" src="https://user-images.githubusercontent.com/41551585/165626539-3da0e12f-9965-4b92-9156-4d58d2456a87.svg"/>
+</div>
 
-Enjoy!
+# Overview
+This collection of open-source APIs helps developers produce mock/fake data for their applications.
+
         
 
 Base url:
-`fakefakerapi.herokuapp.com`
+`fakefakerapi.herokuapp.com/api/v1/`
 
-# Docs
-https://fakefakerapi.herokuapp.com/docs
+# Documentation
+https://fakefaker-docs.herokuapp.com/
 
 # Endpoints
 
-`/addresses`
+GET `/addresses`
 
 Get all addresses
 
@@ -43,7 +48,7 @@ HTTP/1.1 200 OK
 ]
 ```
 
-`/users`
+GET `/users`
 
 Get all users
 
@@ -69,7 +74,7 @@ Success-Response
    } 
  ]
 ```
-`/books`
+GET `/books`
 
 Get all books
 
@@ -100,7 +105,7 @@ Success-Response
 ]
 
 ```
-`/companies`
+GET `/companies`
 
 Get all companies
 
@@ -133,7 +138,7 @@ Success-Response
 ]
 ```
 
-`/movies`
+GET `/movies`
 
 Get all movies
 
@@ -154,7 +159,7 @@ Success-Response
   ]
  ```
  
- `/products`
+GET `/products`
  
  Get all products
  
