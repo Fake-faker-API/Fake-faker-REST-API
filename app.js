@@ -4,10 +4,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const nodeCache = require('node-cache');
 const moesif = require('moesif-nodejs');
 
-const { ipMiddleware } = require('./middleware/rateLimiting')
+const { rateLimiter } = require('./middleware/rateLimiter');
 const { options } = require('./middleware/moesif');
 
 const usersRouter = require('./routes/users');
@@ -17,16 +16,11 @@ const addressesRouter = require('./routes/addresses');
 const booksRouter = require('./routes/books');
 const moviesRouter = require('./routes/movies');
 
-const {
-  TIME_FRAME_IN_S
-} = require('./utils/constants/rate-limiting-const');
-
 const app = express();
 const moesifMiddleware = moesif(options);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-const IPCache = new nodeCache({ stdTTL: TIME_FRAME_IN_S, deleteOnExpire: false, checkperiod: TIME_FRAME_IN_S });
 
 app.use(moesifMiddleware);
 app.use(logger('dev'));
@@ -34,14 +28,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/api/v1/users', ipMiddleware(IPCache), usersRouter);
-app.use('/api/v1/products', ipMiddleware(IPCache), productsRouter);
-app.use('/api/v1/companies', ipMiddleware(IPCache), companiesRouter);
-app.use('/api/v1/addresses', ipMiddleware(IPCache), addressesRouter);
-app.use('/api/v1/books', ipMiddleware(IPCache), booksRouter);
-app.use('/api/v1/movies', ipMiddleware(IPCache), moviesRouter);
+app.use('/api/v1/users', rateLimiter, usersRouter);
+app.use('/api/v1/products', rateLimiter, productsRouter);
+app.use('/api/v1/companies', rateLimiter, companiesRouter);
+app.use('/api/v1/addresses', rateLimiter, addressesRouter);
+app.use('/api/v1/books', rateLimiter, booksRouter);
+app.use('/api/v1/movies', rateLimiter, moviesRouter);
 
-//TODO this should be redirected to the docs, when docs are ready
 app.use('/', function(req, res, next) {
   next(createError(404));
 });
