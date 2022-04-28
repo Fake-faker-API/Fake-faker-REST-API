@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const catchError = require("../lib/catch-error");
-const { getBooks, getBooksIncludeGenre } = require("../lib/books-query");
+const { getBooks, getBooksFilterByGenre } = require("../lib/books-query");
 const { validateStringParamIsInt } = require('../utils/general-utils');
 const { validateFilterByGenre } = require('./helper-functions/validate-filter-by-genre-param');
 const { MIN_ROWS, MAX_ROWS } = require('../utils/constants/query-results-rows-limit-const');
@@ -19,7 +19,7 @@ router.get('/', catchError(async (req, res, next) => {
     filterByGenre = validateFilterByGenre(filterByGenre);
     console.log(filterByGenre)
 
-    let result = await getBooksIncludeGenre(rowsLimitParam, filterByGenre);
+    let result = await getBooksFilterByGenre(rowsLimitParam, filterByGenre);
     res.json(result.rows);
   } else {
     let result = await getBooks(rowsLimitParam);

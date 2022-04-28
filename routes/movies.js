@@ -3,7 +3,7 @@ var router = express.Router();
 const catchError = require("../lib/catch-error");
 const {
   getMovies,
-  getMoviesIncludeGenre
+  getMoviesFilterByGenre
 } = require("../lib/movies-query");
 const { validateStringParamIsInt } = require('../utils/general-utils');
 const { validateFilterByGenre } = require('./helper-functions/validate-filter-by-genre-param');
@@ -23,7 +23,7 @@ router.get(
     if (filterByGenre) {
       filterByGenre = validateFilterByGenre(filterByGenre);
       console.log(filterByGenre)
-      let result = await getMoviesIncludeGenre(rowsLimitParam, filterByGenre);
+      let result = await getMoviesFilterByGenre(rowsLimitParam, filterByGenre);
       res.json(result.rows);
     } else {
       let result = await getMovies(rowsLimitParam);
