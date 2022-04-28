@@ -43,7 +43,7 @@ app.use('/api/v1/movies', ipMiddleware(IPCache), moviesRouter);
 
 //TODO this should be redirected to the docs, when docs are ready
 app.use('/', function(req, res, next) {
-  next(createError(404));
+  res.send('Try https://fakefakerapi.herokuapp.com/api/v1/users').end()
 });
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
