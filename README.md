@@ -11,6 +11,7 @@
 # Overview
 This collection of open-source APIs helps developers produce mock/fake data for their applications.
 
+# See GraphQL version of this API [here](https://github.com/Fake-faker-API/Fake-faker-GraphQL-API)
         
 
 Base url:
